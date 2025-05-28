@@ -12,7 +12,10 @@ public class GatewayConfig {
     public RouteLocator customRouteLocator (RouteLocatorBuilder builder){
         return builder
                 .routes()
-                // poner rutas mas adelante
+                .route("monitors", r -> r.path("/monitors/**")
+                        .uri("lb://monitors-surf"))
+                .route("classes", r -> r.path("/classes/**")
+                        .uri("lb://class-surf"))
                 .build();
     }
 }
